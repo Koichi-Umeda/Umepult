@@ -2253,3 +2253,102 @@ Processing by HomeController#show as HTML
 Completed 200 OK in 77ms (Views: 69.9ms | ActiveRecord: 0.4ms)
 
 
+Started GET "/" for ::1 at 2020-09-11 19:28:31 +0900
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by HomeController#top as HTML
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 202ms (Views: 197.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-11 19:30:05 +0900
+Processing by HomeController#top as HTML
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 33ms (Views: 31.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-11 19:30:12 +0900
+Processing by HomeController#top as HTML
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 32ms (Views: 30.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/home/create" for ::1 at 2020-09-11 19:30:14 +0900
+Processing by HomeController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mZV+8gotC6iXGUmhARPEIIfFKLdq9JaalflC8pUB1HldKLqY4Z3hzwcXiZTLkKrUbHhd1jhQhxk4NPLlVuOBlA==", "Ateam"=>"", "Bteam"=>""}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/home_controller.rb:20
+  [1m[36mMatch Create (2.0ms)[0m  [1m[32mINSERT INTO "matches" ("Ateam", "Bteam", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["Ateam", ""], ["Bteam", ""], ["created_at", "2020-09-11 10:30:15.030175"], ["updated_at", "2020-09-11 10:30:15.030175"]]
+  ↳ app/controllers/home_controller.rb:20
+  [1m[35m (3.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/home_controller.rb:20
+Redirected to http://localhost:3000/main
+Completed 302 Found in 21ms (ActiveRecord: 6.7ms)
+
+
+Started GET "/main" for ::1 at 2020-09-11 19:30:15 +0900
+Processing by HomeController#main as HTML
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:7
+  Rendering home/main.html.erb within layouts/application
+  Rendered home/main.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 47ms (Views: 40.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2020-09-11 19:51:14 +0900
+Processing by HomeController#top as HTML
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 25ms (Views: 23.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-11 19:51:16 +0900
+Processing by HomeController#top as HTML
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 27ms (Views: 25.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-12 17:55:45 +0900
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by HomeController#top as HTML
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 293ms (Views: 286.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/home/create" for ::1 at 2020-09-12 17:56:03 +0900
+Processing by HomeController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Wm40p79bA690OG3Yg9PeBI/g7dagY3VxRDKSBvOt9NySkwyOeaUD2o3+3GDG0Ti24YIXbjT1Gs1OYft3TR5aDQ==", "Ateam"=>"鹿島アントラーズ", "Bteam"=>"清水エスパルス"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/home_controller.rb:20
+  [1m[36mMatch Create (0.6ms)[0m  [1m[32mINSERT INTO "matches" ("Ateam", "Bteam", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["Ateam", "鹿島アントラーズ"], ["Bteam", "清水エスパルス"], ["created_at", "2020-09-12 08:56:03.236938"], ["updated_at", "2020-09-12 08:56:03.236938"]]
+  ↳ app/controllers/home_controller.rb:20
+  [1m[35m (3.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/home_controller.rb:20
+Redirected to http://localhost:3000/main
+Completed 302 Found in 33ms (ActiveRecord: 5.6ms)
+
+
+Started GET "/main" for ::1 at 2020-09-12 17:56:03 +0900
+Processing by HomeController#main as HTML
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:7
+  Rendering home/main.html.erb within layouts/application
+  Rendered home/main.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 48ms (Views: 37.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2020-09-14 16:45:20 +0900
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by HomeController#top as HTML
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 160ms (Views: 155.2ms | ActiveRecord: 0.0ms)
+
+

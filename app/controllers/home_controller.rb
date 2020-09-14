@@ -18,6 +18,7 @@ class HomeController < ApplicationController
   def create
     @match = Match.new(Ateam: params[:Ateam] ,Bteam: params[:Bteam])
     @match.save
-    redirect_to("/home/#{@match.id}")
+    #redirect_to("/home/#{@match.id}")
+    redirect_to("/main")
   end
 end
