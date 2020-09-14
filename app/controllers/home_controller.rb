@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def about
   end
   def main
-    @match = Match.find_by(id: params[:id])
+    
   end
   def show
     @match = Match.find_by(id: params[:id])
