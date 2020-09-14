@@ -3,10 +3,10 @@
 <% teamB= @match.Bteam%>
 <div class="main">
     <div><%= teamA%><span> vs </span><%= teamB%></div>
-    <div id="Gametimer">00:00:000</div>
+    <div  class="Gametimer" id="Gametimer">00:00</div>
     <div class="Status">
         <div>Now:
-        <span class="Now_Condition">Game Stop</span>
+        <span class="Situation" id="Situation">Game Stop</span>
         </div>
     </div>
     <div class="Possession_Gauge">
@@ -23,12 +23,6 @@
         <button id="Gamestop">Gamestop</button>
         <button id="reset">reset</button>
     </div>
-
-    <div id="ActualPlayingtime">ActualPlayingtime</div>
-    <div id="ActualPlayingtimer">00:00:000</div>
-    <div id="timerA">00:00:000</div>
-    <div id="timerB">00:00:000</div>
-
 
 </div>
 <script type="text/javascript">
@@ -51,6 +45,7 @@
     var reset = document.getElementById('reset');
     var PosessionA = document.getElementById('PosessionA');
     var PosessionB = document.getElementById('PosessionB');
+    var situation = document.getElementById('Situation');
 
     //クリック時の時間を保持するための変数定義
     var startATime;
@@ -103,7 +98,7 @@
         ms = ('0' + ms).slice(-3);
 
         //HTMLのid　timer部分に表示させる　
-        timerA.textContent = m + ':' + s + ':' + ms;
+        //timerA.textContent = m + ':' + s + ':' + ms;
     }
     function updateTimetTextB(){
 
@@ -125,7 +120,7 @@
         ms = ('0' + ms).slice(-3);
 
         //HTMLのid　timer部分に表示させる　
-        timerB.textContent = m + ':' + s + ':' + ms;
+        //timerB.textContent = m + ':' + s + ':' + ms;
     }
     function updategameTimetText(){
 
@@ -144,10 +139,10 @@
         //文字列の末尾2桁を表示したいのでsliceで負の値(-2)引数で渡してやる。
         m = ('0' + m).slice(-2); 
         s = ('0' + s).slice(-2);
-        ms = ('0' + ms).slice(-3);
+        //ms = ('0' + ms).slice(-3);
 
         //HTMLのid　timer部分に表示させる　
-        gametimer.textContent = m + ':' + s + ':' + ms;
+        gametimer.textContent = m + ':' + s;
     }
     function updateActualPlayingTimetText(){
         elapsedActualTime = elapsedATime + elapsedBTime;
@@ -169,7 +164,7 @@
         ms = ('0' + ms).slice(-3);
 
         //HTMLのid　timer部分に表示させる　
-        actualPlayingtimer.textContent = m + ':' + s + ':' + ms;
+        //actualPlayingtimer.textContent = m + ':' + s + ':' + ms;
     }
     function updatePosessionText(){
         
@@ -220,6 +215,7 @@
             updatePosessionText()
             //countUp関数自身を呼ぶことで10ミリ秒毎に以下の計算を始める
             countUpB();
+            
 
         //1秒以下の時間を表示するために10ミリ秒後に始めるよう宣言
         },10);
@@ -257,28 +253,38 @@
 
     //startボタンにクリック時のイベントを追加(タイマースタートイベント)
     gamestartA.addEventListener('click',function(){
+        
+        if (isGamePlaying ==0) {
+            //在時刻を示すDate.nowを代入
+            startGameTime = Date.now();
+            startATime = Date.now();
+            isAPosessing = 1;
+            isGamePlaying = 1;
 
-        //在時刻を示すDate.nowを代入
-        startGameTime = Date.now();
-        startATime = Date.now();
-        isAPosessing = 1;
-
-        //再帰的に使えるように関数を作る
-        countUpGame();
-        countUpA();
-        countUpActualPlayingTime();
+            //再帰的に使えるように関数を作る
+            countUpGame();
+            countUpA();
+            countUpActualPlayingTime();
+            situation.textContent = 'Ateam possessing';
+        }
+        
     });
     gamestartB.addEventListener('click',function(){
 
-        //在時刻を示すDate.nowを代入
-        startGameTime = Date.now();
-        startBTime = Date.now();
-        isBPosessing = 1;
+        if (isGamePlaying == 0) {
+            //在時刻を示すDate.nowを代入
+            startGameTime = Date.now();
+            startBTime = Date.now();
+            isBPosessing = 1;
+            isGamePlaying = 1;
 
-        //再帰的に使えるように関数を作る
-        countUpGame();
-        countUpB();
-        countUpActualPlayingTime();    
+            //再帰的に使えるように関数を作る
+            countUpGame();
+            countUpB();
+            countUpActualPlayingTime();
+            situation.textContent = 'Bteam possessing';
+        }
+                    
     });
     startA.addEventListener('click',function(){
 
@@ -294,6 +300,7 @@
         //再帰的に使えるように関数を作る
         countUpA();
         countUpActualPlayingTime();
+        situation.textContent = 'Ateam possessing';
     });
 
     startB.addEventListener('click',function(){
@@ -310,6 +317,7 @@
         //再帰的に使えるように関数を作る
         countUpB();
         countUpActualPlayingTime();
+        situation.textContent = 'Bteam possessing';
     });
     Playstop.addEventListener('click',function(){
        if (isAPosessing == 1) {
@@ -321,6 +329,7 @@
            timeToaddB += Date.now() - startBTime;
            isBPosessing = 0;
        }
+       situation.textContent = 'Play stop';
     });
     
     Gamestop.addEventListener('click',function(){
@@ -337,6 +346,7 @@
            timeToaddB += Date.now() - startBTime;
            isBPosessing = 0;
        }
+       situation.textContent = 'Game stop';
     });
 
     //resetボタンにクリック時のイベントを追加(タイマーリセットイベント)
@@ -358,7 +368,7 @@
         updategameTimetText();
         updatePosessionText();
         PosessionB.textContent = 0;
-
+        situation.textContent = 'Game stop';
     });
 
     document.addEventListener('keydown',(event) =>{
@@ -377,6 +387,7 @@
         
                 countUpA();
                 countUpActualPlayingTime();
+                situation.textContent = 'Ateam possessing';
             }
             
         } else if (event.keyCode == 83) {
@@ -395,6 +406,7 @@
                 //再帰的に使えるように関数を作る
                 countUpB();
                 countUpActualPlayingTime();
+                situation.textContent = 'Bteam possessing';
             }
             
         } else if (event.keyCode ==90) {
@@ -409,30 +421,41 @@
                 timeToaddB += Date.now() - startBTime;
                 isBPosessing = 0;
             }
+            situation.textContent = 'Play stop';
         } else if (event.keyCode ==81) {
             
             //Qキーが押された時GameStartA
-            //在時刻を示すDate.nowを代入
-            startGameTime = Date.now();
-            startATime = Date.now();
-            isAPosessing = 1;
+            if (isGamePlaying ==0) {
+                //在時刻を示すDate.nowを代入
+                startGameTime = Date.now();
+                startATime = Date.now();
+                isAPosessing = 1;
+                isGamePlaying = 1;
 
-            //再帰的に使えるように関数を作る
-            countUpGame();
-            countUpA();
-            countUpActualPlayingTime();
+                //再帰的に使えるように関数を作る
+                countUpGame();
+                countUpA();
+                countUpActualPlayingTime();
+                situation.textContent = 'Ateam possessing';
+            }
+            
         }else if (event.keyCode ==87) {
             
             //Wキーが押された時GameStartB
-            //在時刻を示すDate.nowを代入
-            startGameTime = Date.now();
-            startBTime = Date.now();
-            isBPosessing = 1;
+            if (isGamePlaying == 0) {
+                //在時刻を示すDate.nowを代入
+                startGameTime = Date.now();
+                startBTime = Date.now();
+                isBPosessing = 1;
+                isGamePlaying = 1;
 
-            //再帰的に使えるように関数を作る
-            countUpGame();
-            countUpB();
-            countUpActualPlayingTime();
+                //再帰的に使えるように関数を作る
+                countUpGame();
+                countUpB();
+                countUpActualPlayingTime();
+                situation.textContent = 'Bteam possessing';
+            }
+            
         }else if(event.keyCode ==67){
 
             //Cキーが押された時reset
@@ -451,6 +474,7 @@
             updategameTimetText();
             updatePosessionText();
             PosessionB.textContent = 0;
+            situation.textContent = 'Game stop';
         }else if(event.keyCode ==88){
 
             //Xが押された時GameStop
@@ -465,6 +489,7 @@
                 timeToaddB += Date.now() - startBTime;
                 isBPosessing = 0;
             }
+            situation.textContent = 'Game stop';
         }
         
     })
