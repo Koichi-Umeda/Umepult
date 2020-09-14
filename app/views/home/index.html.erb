@@ -1,0 +1,10 @@
+<div class="main posts-index">
+  <div class="container">
+    <% @matches.each do |match| %>
+      <div class="home-index-item">
+        <%= link_to(match.Ateam ,"/home/#{match.id}")%>
+        <%= link_to(match.Bteam ,"/home/#{match.id}")%>
+      </div>
+    <% end %>
+  </div>
+</div>

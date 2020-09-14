@@ -1,0 +1,18 @@
+
+<div class="main top-main">
+  <div class="top-message">
+    <h2>Welcome to Umepult</h2>
+    <p>Let's get start!</p>
+    <%=form_tag("/home/create")do%>
+      <p class="inputTeamName">
+        <p>TeamA</p>
+        <textarea name="Ateam"></textarea>
+      </p>
+      <p class="inputTeamName">
+        <p>TeamB</p>
+        <textarea name="Bteam"></textarea>
+      </p>
+      <input type="submit" value="Go">
+    <%end%>
+  </div>
+</div>
