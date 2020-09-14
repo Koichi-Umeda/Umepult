@@ -3808,3 +3808,233 @@ Processing by HomeController#show as HTML
 Completed 200 OK in 26ms (Views: 22.6ms | ActiveRecord: 0.3ms)
 
 
+Started GET "/home/28" for ::1 at 2020-09-15 01:48:53 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 26ms (Views: 23.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/28" for ::1 at 2020-09-15 01:49:18 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 33ms (Views: 30.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/home/28" for ::1 at 2020-09-15 01:49:58 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 26ms (Views: 23.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/28" for ::1 at 2020-09-15 01:50:24 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 25ms (Views: 22.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/28" for ::1 at 2020-09-15 01:51:04 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 34ms (Views: 30.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/28" for ::1 at 2020-09-15 01:52:56 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 84ms (Views: 80.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/28" for ::1 at 2020-09-15 01:53:17 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 90ms (Views: 87.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/28" for ::1 at 2020-09-15 01:53:37 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 82ms (Views: 79.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/28" for ::1 at 2020-09-15 01:54:02 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 89ms (Views: 86.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/28" for ::1 at 2020-09-15 01:54:18 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 89ms (Views: 85.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/28" for ::1 at 2020-09-15 01:54:43 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 82ms (Views: 78.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/28" for ::1 at 2020-09-15 01:55:12 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 87ms (Views: 83.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for ::1 at 2020-09-15 01:55:29 +0900
+Processing by HomeController#top as HTML
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 25ms (Views: 23.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/home/create" for ::1 at 2020-09-15 01:56:15 +0900
+Processing by HomeController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9H1nctctTYrE8iRNSAr+xENt0ltT/ddZ1xMbXrUlOgSXvDEu725rb95hGX4FPZEvUORk0nnrUUxpmVvWruAn6g==", "Ateam"=>"横浜FM", "Acolor"=>"#0f0bda", "Bteam"=>"清水", "Bcolor"=>"#f8a102"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/home_controller.rb:20
+  [1m[36mMatch Create (0.6ms)[0m  [1m[32mINSERT INTO "matches" ("Ateam", "Bteam", "created_at", "updated_at", "Acolor", "Bcolor") VALUES (?, ?, ?, ?, ?, ?)[0m  [["Ateam", "横浜FM"], ["Bteam", "清水"], ["created_at", "2020-09-14 16:56:15.662173"], ["updated_at", "2020-09-14 16:56:15.662173"], ["Acolor", "#0f0bda"], ["Bcolor", "#f8a102"]]
+  ↳ app/controllers/home_controller.rb:20
+  [1m[35m (3.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/home_controller.rb:20
+Redirected to http://localhost:3000/home/29
+Completed 302 Found in 11ms (ActiveRecord: 4.2ms)
+
+
+Started GET "/home/29" for ::1 at 2020-09-15 01:56:15 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 31ms (Views: 28.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/29" for ::1 at 2020-09-15 01:57:26 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 27ms (Views: 23.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/29" for ::1 at 2020-09-15 01:58:40 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 26ms (Views: 23.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/home/29" for ::1 at 2020-09-15 01:59:17 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 29ms (Views: 26.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/29" for ::1 at 2020-09-15 01:59:42 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 34ms (Views: 30.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/29" for ::1 at 2020-09-15 02:00:44 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 26ms (Views: 22.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/29" for ::1 at 2020-09-15 02:01:06 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 27ms (Views: 23.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/home/29" for ::1 at 2020-09-15 02:02:22 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 33ms (Views: 30.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/29" for ::1 at 2020-09-15 02:06:02 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 26ms (Views: 23.7ms | ActiveRecord: 0.2ms)
+
+
