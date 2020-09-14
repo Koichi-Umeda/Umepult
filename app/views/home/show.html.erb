@@ -3,11 +3,26 @@
 <% teamB= @match.Bteam%>
 <div class="main">
     <h3><%= teamA%><span> vs </span><%= teamB%></h3>
-    <h1 class="Game Timer">00:00</h1>
-    
-    <p class="Now_Condition">Game stop</p>
-    
-    
+    <div class="Game_Timer">00:00</div>
+    <div class="Status">
+        <p>Now:
+        <span class="Now_Condition">Game Stop</span>
+        </p>
+    </div>
+    <div class="Possession_Gauge">
+        <span id="PosessionA">00</span>
+        <span id=":">:</span>
+        <span id="PosessionB">00</span>
+    </div>
+    <div class="buttons">
+        <button id="GamestartA">GamestartA</button>
+        <button id="GamestartB">GamestartB</button>
+        <button id="startA">startA</button>
+        <button id="startB">startB</button>
+        <button id="Playstop">Playstop</button>
+        <button id="Gamestop">Gamestop</button>
+        <button id="reset">reset</button>
+    </div>
 </div>
 <script type="text/javascript">
     (function(){
@@ -16,7 +31,7 @@
     //htmlのidからデータを取得
     //取得したデータを変数に代入
 
-    var gametimer = document.getElementById('Gametimer');
+    var gametimer = document.getElementById('Game_Timer');
     var actualPlayingtimer = document.getElementById('ActualPlayingtimer')
     var timerA = document.getElementById('timerA');
     var gamestartA = document.getElementById('GamestartA');
@@ -449,3 +464,4 @@
 })();
   
   </script>
+</html>

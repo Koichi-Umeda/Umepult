@@ -252,10 +252,13 @@
     padding:40px;
     text-align: center;
 
-    .Timer{
+    .Game_Timer{
       font-size:100px;
     }
-    .Now_Condition{
+    .Status{
+      font-size:20px;
+    }
+    .Possession_Gauge{
       font-size:40px;
     }
   }
