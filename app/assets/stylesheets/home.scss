@@ -262,7 +262,7 @@
       font-size:40px;
     }
     .buttons{
-      padding-top: 20px;
+      padding-top: 20px;      
     }
     button{
       border:none;
@@ -270,5 +270,9 @@
       color:white;
       background-color: #3ecdc6;
       border-radius: 15px;
+      cursor: pointer;
+      &:hover{  
+        opacity: 0.78;
+      }
     }
   }
