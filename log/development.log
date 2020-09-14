@@ -2668,3 +2668,72 @@ Processing by HomeController#show as HTML
 Completed 200 OK in 32ms (Views: 22.8ms | ActiveRecord: 0.2ms)
 
 
+Started GET "/home/25" for ::1 at 2020-09-14 18:51:43 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"25"}
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 44ms (Views: 39.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/home/25" for ::1 at 2020-09-14 18:51:45 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"25"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 39ms (Views: 35.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/25" for ::1 at 2020-09-14 18:53:28 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"25"}
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 110ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (Invalid CSS after "    color: ": expected expression (e.g. 1px, bold), was "@match.Acolor;"):
+     5:     <%= csrf_meta_tags %>
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+  
+app/assets/stylesheets/home.scss:249
+app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb__718030194_120515260'
+Started GET "/home/25" for ::1 at 2020-09-14 18:53:55 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"25"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 82ms (Views: 79.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home/25" for ::1 at 2020-09-14 18:54:24 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"25"}
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 28ms (Views: 24.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for ::1 at 2020-09-14 18:54:41 +0900
+Processing by HomeController#top as HTML
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 32ms (Views: 30.7ms | ActiveRecord: 0.0ms)
+
+
