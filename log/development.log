@@ -2636,3 +2636,35 @@ Migrating to AddColorToMatch (20200914094336)
   ↳ bin/rails:4
   [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ bin/rails:4
+Started GET "/" for ::1 at 2020-09-14 18:45:32 +0900
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by HomeController#top as HTML
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 39ms (Views: 37.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/home/create" for ::1 at 2020-09-14 18:45:47 +0900
+Processing by HomeController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qMgDqZKnn5OyiHsZIdbDWGGHD8GTa3p0AL2Vs9pa743e1KOLiH/3geW+7hmUzDD4Wva5ErGMrpCXg5g/bKmMVA==", "Ateam"=>"Liverpool", "Acolor"=>"#e30d0d", "Bteam"=>"Leeds", "Bcolor"=>"#faf9f9"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/home_controller.rb:20
+  [1m[36mMatch Create (0.8ms)[0m  [1m[32mINSERT INTO "matches" ("Ateam", "Bteam", "created_at", "updated_at", "Acolor", "Bcolor") VALUES (?, ?, ?, ?, ?, ?)[0m  [["Ateam", "Liverpool"], ["Bteam", "Leeds"], ["created_at", "2020-09-14 09:45:47.402087"], ["updated_at", "2020-09-14 09:45:47.402087"], ["Acolor", "#e30d0d"], ["Bcolor", "#faf9f9"]]
+  ↳ app/controllers/home_controller.rb:20
+  [1m[35m (3.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/home_controller.rb:20
+Redirected to http://localhost:3000/home/25
+Completed 302 Found in 21ms (ActiveRecord: 5.3ms)
+
+
+Started GET "/home/25" for ::1 at 2020-09-14 18:45:47 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"25"}
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 32ms (Views: 22.8ms | ActiveRecord: 0.2ms)
+
+
