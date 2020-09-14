@@ -343,6 +343,7 @@
             
             if (isBPosessing == 0) {
                 //Sキーが押された時startB
+                if (isGamePlaying == 1) {
                 startBTime = Date.now();
                 isBPosessing = 1;
 
@@ -351,10 +352,10 @@
                     timeToaddA += Date.now() - startATime;
                     isAPosessing = 0;
                 }
-                //再帰的に使えるように関数を作る
                 countUpB();
                 countUpActualPlayingTime();
                 situation.textContent = 'Bteam possessing';
+                }
             }
             
         } else if (event.keyCode ==90) {
