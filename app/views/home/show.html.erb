@@ -1,9 +1,451 @@
 
 <% teamA= @match.Ateam %>
-
-<div class="Team">
-    <%= teamA%>
-    <%= @match.Acolor%>
-    <%= @match.Bteam %>
-    <%= @match.Bcolor%>
+<% teamB= @match.Bteam%>
+<div class="main">
+    <h3><%= teamA%><span> vs </span><%= teamB%></h3>
+    <h1 class="Game Timer">00:00</h1>
+    
+    <p class="Now_Condition">Game stop</p>
+    
+    
 </div>
+<script type="text/javascript">
+    (function(){
+    'use strict';
+
+    //htmlのidからデータを取得
+    //取得したデータを変数に代入
+
+    var gametimer = document.getElementById('Gametimer');
+    var actualPlayingtimer = document.getElementById('ActualPlayingtimer')
+    var timerA = document.getElementById('timerA');
+    var gamestartA = document.getElementById('GamestartA');
+    var startA = document.getElementById('startA');
+    var gamestartB = document.getElementById('GamestartB');
+    var timerB = document.getElementById('timerB');
+    var startB = document.getElementById('startB');
+    var Playstop = document.getElementById('Playstop');
+    var Gamestop = document.getElementById('Gamestop');
+    var reset = document.getElementById('reset');
+    var PosessionA = document.getElementById('PosessionA');
+    var PosessionB = document.getElementById('PosessionB');
+
+    //クリック時の時間を保持するための変数定義
+    var startATime;
+    var startBTime;
+    var startGameTime;
+    var startActualPlayingtime;
+
+    //経過時刻を更新するための変数。 初めはだから0で初期化
+    var elapsedATime = 0;
+    var elapsedBTime = 0;
+    var elapsedGameTime = 0;
+    var elapsedActualTime = 0;
+
+    //タイマーを止めるにはclearTimeoutを使う必要があり、そのためにはclearTimeoutの引数に渡すためのタイマーのidが必要
+    var timerIdA;
+    var timerIdB;
+    var gametimerId;
+    var apttimerId;
+
+    //タイマーをストップ -> 再開させたら0になってしまうのを避けるための変数。
+    var timeToaddA = 0;
+    var timeToaddB = 0;
+    var timeToadd = 0;
+
+    //フラグ
+    var isGamePlaying = 0;
+    var isAPosessing = 0;
+    var isBPosessing = 0; 
+
+
+    //ミリ秒の表示ではなく、分とか秒に直すための関数, 他のところからも呼び出すので別関数として作る
+    //計算方法として135200ミリ秒経過したとしてそれを分とか秒に直すと -> 02:15:200
+    function updateTimetTextA(){
+
+        //m(分) = 135200 / 60000ミリ秒で割った数の商　-> 2分
+        var m = Math.floor(elapsedATime / 60000);
+
+        //s(秒) = 135200 % 60000ミリ秒で / 1000 (ミリ秒なので1000で割ってやる) -> 15秒
+        var s = Math.floor(elapsedATime % 60000 / 1000);
+
+        //ms(ミリ秒) = 135200ミリ秒を % 1000ミリ秒で割った数の余り
+        var ms = elapsedATime % 1000;
+
+
+        //HTML 上で表示の際の桁数を固定する　例）3 => 03　、 12 -> 012
+        //javascriptでは文字列数列を連結すると文字列になる
+        //文字列の末尾2桁を表示したいのでsliceで負の値(-2)引数で渡してやる。
+        m = ('0' + m).slice(-2); 
+        s = ('0' + s).slice(-2);
+        ms = ('0' + ms).slice(-3);
+
+        //HTMLのid　timer部分に表示させる　
+        timerA.textContent = m + ':' + s + ':' + ms;
+    }
+    function updateTimetTextB(){
+
+        //m(分) = 135200 / 60000ミリ秒で割った数の商　-> 2分
+        var m = Math.floor(elapsedBTime / 60000);
+
+        //s(秒) = 135200 % 60000ミリ秒で / 1000 (ミリ秒なので1000で割ってやる) -> 15秒
+        var s = Math.floor(elapsedBTime % 60000 / 1000);
+
+        //ms(ミリ秒) = 135200ミリ秒を % 1000ミリ秒で割った数の余り
+        var ms = elapsedBTime % 1000;
+
+
+        //HTML 上で表示の際の桁数を固定する　例）3 => 03　、 12 -> 012
+        //javascriptでは文字列数列を連結すると文字列になる
+        //文字列の末尾2桁を表示したいのでsliceで負の値(-2)引数で渡してやる。
+        m = ('0' + m).slice(-2); 
+        s = ('0' + s).slice(-2);
+        ms = ('0' + ms).slice(-3);
+
+        //HTMLのid　timer部分に表示させる　
+        timerB.textContent = m + ':' + s + ':' + ms;
+    }
+    function updategameTimetText(){
+
+        //m(分) = 135200 / 60000ミリ秒で割った数の商　-> 2分
+        var m = Math.floor(elapsedGameTime / 60000);
+
+        //s(秒) = 135200 % 60000ミリ秒で / 1000 (ミリ秒なので1000で割ってやる) -> 15秒
+        var s = Math.floor(elapsedGameTime % 60000 / 1000);
+
+        //ms(ミリ秒) = 135200ミリ秒を % 1000ミリ秒で割った数の余り
+        var ms = elapsedGameTime % 1000;
+
+
+        //HTML 上で表示の際の桁数を固定する　例）3 => 03　、 12 -> 012
+        //javascriptでは文字列数列を連結すると文字列になる
+        //文字列の末尾2桁を表示したいのでsliceで負の値(-2)引数で渡してやる。
+        m = ('0' + m).slice(-2); 
+        s = ('0' + s).slice(-2);
+        ms = ('0' + ms).slice(-3);
+
+        //HTMLのid　timer部分に表示させる　
+        gametimer.textContent = m + ':' + s + ':' + ms;
+    }
+    function updateActualPlayingTimetText(){
+        elapsedActualTime = elapsedATime + elapsedBTime;
+        //m(分) = 135200 / 60000ミリ秒で割った数の商　-> 2分
+        var m = Math.floor(elapsedActualTime / 60000);
+
+        //s(秒) = 135200 % 60000ミリ秒で / 1000 (ミリ秒なので1000で割ってやる) -> 15秒
+        var s = Math.floor(elapsedActualTime % 60000 / 1000);
+
+        //ms(ミリ秒) = 135200ミリ秒を % 1000ミリ秒で割った数の余り
+        var ms = elapsedActualTime % 1000;
+
+
+        //HTML 上で表示の際の桁数を固定する　例）3 => 03　、 12 -> 012
+        //javascriptでは文字列数列を連結すると文字列になる
+        //文字列の末尾2桁を表示したいのでsliceで負の値(-2)引数で渡してやる。
+        m = ('0' + m).slice(-2); 
+        s = ('0' + s).slice(-2);
+        ms = ('0' + ms).slice(-3);
+
+        //HTMLのid　timer部分に表示させる　
+        actualPlayingtimer.textContent = m + ':' + s + ':' + ms;
+    }
+    function updatePosessionText(){
+        
+        
+        var posessionA = Math.floor((elapsedATime / elapsedActualTime)*100);
+        //var posessionB = Math.floor((elapsedBTime / elapsedActualTime)*100);
+        var posessionB = 100 - posessionA;
+        PosessionA.textContent = posessionA;
+        PosessionB.textContent = posessionB;
+        if (PosessionA.textContent >= 100) {
+            PosessionA.textContent = 100;
+        }
+        if (PosessionB.textContent >= 100) {
+            PosessionB.textContent = 100;
+        }
+        if (PosessionA.textContent < 0) {
+            PosessionA.textContent = 0;
+        }
+        if (PosessionB.textContent < 0) {
+            PosessionB.textContent = 0;
+        }
+    }
+
+    //再帰的に使える用の関数
+    function countUpA(){
+
+        //timerId変数はsetTimeoutの返り値になるので代入する
+        timerIdA = setTimeout(function(){
+
+            //経過時刻は現在時刻をミリ秒で示すDate.now()からstartを押した時の時刻(startTime)を引く
+            elapsedATime = Date.now() - startATime + timeToaddA;
+            updateTimetTextA()
+            updatePosessionText()
+            //countUp関数自身を呼ぶことで10ミリ秒毎に以下の計算を始める
+            countUpA();
+
+        //1秒以下の時間を表示するために10ミリ秒後に始めるよう宣言
+        },10);
+    }
+    function countUpB(){
+
+        //timerId変数はsetTimeoutの返り値になるので代入する
+        timerIdB = setTimeout(function(){
+
+            //経過時刻は現在時刻をミリ秒で示すDate.now()からstartを押した時の時刻(startTime)を引く
+            elapsedBTime = Date.now() - startBTime + timeToaddB;
+            updateTimetTextB()
+            updatePosessionText()
+            //countUp関数自身を呼ぶことで10ミリ秒毎に以下の計算を始める
+            countUpB();
+
+        //1秒以下の時間を表示するために10ミリ秒後に始めるよう宣言
+        },10);
+    }
+    function countUpGame(){
+
+        //timerId変数はsetTimeoutの返り値になるので代入する
+        gametimerId = setTimeout(function(){
+
+            //経過時刻は現在時刻をミリ秒で示すDate.now()からstartを押した時の時刻(startTime)を引く
+            elapsedGameTime = Date.now() - startGameTime + timeToadd;
+            updategameTimetText()
+
+            //countUp関数自身を呼ぶことで10ミリ秒毎に以下の計算を始める
+            countUpGame();
+
+        //1秒以下の時間を表示するために10ミリ秒後に始めるよう宣言
+        },10);
+    }
+    function countUpActualPlayingTime(){
+
+        //timerId変数はsetTimeoutの返り値になるので代入する
+        apttimerId = setTimeout(function(){
+
+            //経過時刻は現在時刻をミリ秒で示すDate.now()からstartを押した時の時刻(startTime)を引く
+            elapsedActualTime = Date.now() - startActualPlayingtime;;
+            updateActualPlayingTimetText()
+
+            //countUp関数自身を呼ぶことで10ミリ秒毎に以下の計算を始める
+            countUpActualPlayingTime();
+
+        //1秒以下の時間を表示するために10ミリ秒後に始めるよう宣言
+        },10);
+    }
+
+    //startボタンにクリック時のイベントを追加(タイマースタートイベント)
+    gamestartA.addEventListener('click',function(){
+
+        //在時刻を示すDate.nowを代入
+        startGameTime = Date.now();
+        startATime = Date.now();
+        isAPosessing = 1;
+
+        //再帰的に使えるように関数を作る
+        countUpGame();
+        countUpA();
+        countUpActualPlayingTime();
+    });
+    gamestartB.addEventListener('click',function(){
+
+        //在時刻を示すDate.nowを代入
+        startGameTime = Date.now();
+        startBTime = Date.now();
+        isBPosessing = 1;
+
+        //再帰的に使えるように関数を作る
+        countUpGame();
+        countUpB();
+        countUpActualPlayingTime();    
+    });
+    startA.addEventListener('click',function(){
+
+        //在時刻を示すDate.nowを代入
+        startATime = Date.now();
+        isAPosessing = 1;
+        if (isBPosessing == 1) {
+            clearTimeout(timerIdB);
+            timeToaddB += Date.now() - startBTime;
+            isBPosessing = 0;
+        }        
+        
+        //再帰的に使えるように関数を作る
+        countUpA();
+        countUpActualPlayingTime();
+    });
+
+    startB.addEventListener('click',function(){
+
+        //在時刻を示すDate.nowを代入
+        startBTime = Date.now();
+        isBPosessing = 1;
+
+        if (isAPosessing == 1) {
+            clearTimeout(timerIdA);
+            timeToaddA += Date.now() - startATime;
+            isAPosessing = 0;
+        }
+        //再帰的に使えるように関数を作る
+        countUpB();
+        countUpActualPlayingTime();
+    });
+    Playstop.addEventListener('click',function(){
+       if (isAPosessing == 1) {
+           clearTimeout(timerIdA);
+           timeToaddA += Date.now() - startATime;
+           isAPosessing = 0;
+       }else{
+           clearTimeout(timerIdB);
+           timeToaddB += Date.now() - startBTime;
+           isBPosessing = 0;
+       }
+    });
+    
+    Gamestop.addEventListener('click',function(){
+
+        //タイマーを止めるにはclearTimeoutを使う必要があり、そのためにはclearTimeoutの引数に渡すためのタイマーのidが必要
+        clearTimeout(gametimerId);
+        timeToadd += Date.now() - startGameTime;
+        if (isAPosessing == 1) {
+           clearTimeout(timerIdA);
+           timeToaddA += Date.now() - startATime;
+           isAPosessing = 0;
+       }else{
+           clearTimeout(timerIdB);
+           timeToaddB += Date.now() - startBTime;
+           isBPosessing = 0;
+       }
+    });
+
+    //resetボタンにクリック時のイベントを追加(タイマーリセットイベント)
+    reset.addEventListener('click',function(){
+
+        //経過時刻を更新するための変数elapsedTimeを0にしてあげつつ、updateTimetTextで0になったタイムを表示。
+        elapsedATime = 0;
+        elapsedBTime = 0;
+        elapsedGameTime = 0;
+
+        //リセット時に0に初期化したいのでリセットを押した際に0を代入してあげる
+        timeToadd = 0;
+        timeToaddA = 0;
+        timeToaddB = 0;
+
+        //updateTimetTextで0になったタイムを表示
+        updateTimetTextA();
+        updateTimetTextB();
+        updategameTimetText();
+        updatePosessionText();
+        PosessionB.textContent = 0;
+
+    });
+
+    document.addEventListener('keydown',(event) =>{
+
+        if (event.keyCode == 65) {
+
+            if (isAPosessing == 0) {
+                //Aキーが押された時startA
+                startATime = Date.now();
+                isAPosessing = 1;
+                if (isBPosessing == 1) {
+                    clearTimeout(timerIdB);
+                    timeToaddB += Date.now() - startBTime;
+                    isBPosessing = 0;
+                }        
+        
+                countUpA();
+                countUpActualPlayingTime();
+            }
+            
+        } else if (event.keyCode == 83) {
+
+            
+            if (isBPosessing == 0) {
+                //Sキーが押された時startB
+                startBTime = Date.now();
+                isBPosessing = 1;
+
+                if (isAPosessing == 1) {
+                    clearTimeout(timerIdA);
+                    timeToaddA += Date.now() - startATime;
+                    isAPosessing = 0;
+                }
+                //再帰的に使えるように関数を作る
+                countUpB();
+                countUpActualPlayingTime();
+            }
+            
+        } else if (event.keyCode ==90) {
+            
+            //Zキーが押された時PlayStop
+            if (isAPosessing == 1) {
+                clearTimeout(timerIdA);
+                timeToaddA += Date.now() - startATime;
+                isAPosessing = 0;
+            }else{
+                clearTimeout(timerIdB);
+                timeToaddB += Date.now() - startBTime;
+                isBPosessing = 0;
+            }
+        } else if (event.keyCode ==81) {
+            
+            //Qキーが押された時GameStartA
+            //在時刻を示すDate.nowを代入
+            startGameTime = Date.now();
+            startATime = Date.now();
+            isAPosessing = 1;
+
+            //再帰的に使えるように関数を作る
+            countUpGame();
+            countUpA();
+            countUpActualPlayingTime();
+        }else if (event.keyCode ==87) {
+            
+            //Wキーが押された時GameStartB
+            //在時刻を示すDate.nowを代入
+            startGameTime = Date.now();
+            startBTime = Date.now();
+            isBPosessing = 1;
+
+            //再帰的に使えるように関数を作る
+            countUpGame();
+            countUpB();
+            countUpActualPlayingTime();
+        }else if(event.keyCode ==67){
+
+            //Cキーが押された時reset
+            elapsedATime = 0;
+            elapsedBTime = 0;
+            elapsedGameTime = 0;
+
+            //リセット時に0に初期化したいのでリセットを押した際に0を代入してあげる
+            timeToadd = 0;
+            timeToaddA = 0;
+            timeToaddB = 0;
+
+            //updateTimetTextで0になったタイムを表示
+            updateTimetTextA();
+            updateTimetTextB();
+            updategameTimetText();
+            updatePosessionText();
+            PosessionB.textContent = 0;
+        }else if(event.keyCode ==88){
+
+            //Xが押された時GameStop
+            clearTimeout(gametimerId);
+            timeToadd += Date.now() - startGameTime;
+            if (isAPosessing == 1) {
+                clearTimeout(timerIdA);
+                timeToaddA += Date.now() - startATime;
+                isAPosessing = 0;
+            }else{
+                clearTimeout(timerIdB);
+                timeToaddB += Date.now() - startBTime;
+                isBPosessing = 0;
+            }
+        }
+        
+    })
+})();
+  
+  </script>
