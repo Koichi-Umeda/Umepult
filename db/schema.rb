@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_145336) do
+ActiveRecord::Schema.define(version: 2020_09_14_094336) do
 
   create_table "matches", force: :cascade do |t|
     t.text "Ateam"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2020_09_09_145336) do
     t.integer "Bper"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "Acolor"
+    t.string "Bcolor"
   end
 
 end

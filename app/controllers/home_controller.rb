@@ -16,9 +16,9 @@ class HomeController < ApplicationController
     @matches = Match.all
   end
   def create
-    @match = Match.new(Ateam: params[:Ateam] ,Bteam: params[:Bteam])
+    @match = Match.new(Ateam: params[:Ateam] ,Acolor: params[:Acolor], Bteam: params[:Bteam],Bcolor: params[:Bcolor] )
     @match.save
-    #redirect_to("/home/#{@match.id}")
-    redirect_to("/main")
+    redirect_to("/home/#{@match.id}")
+    #redirect_to("/main")
   end
 end
