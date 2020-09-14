@@ -1,8 +1,11 @@
 
 <% teamA= @match.Ateam %>
 <% teamB= @match.Bteam%>
+<% colorA= @match.Acolor%>
+<% colorB= @match.Bcolor%>
+
 <div class="main">
-    <div><%= teamA%><span> vs </span><%= teamB%></div>
+    <div class="Teams"><span style="color:<%= colorA%>"><%= teamA%></span><span> vs </span><span style="color:<%= colorB%>"><%= teamB%></span></div>
     <div  class="Gametimer" id="Gametimer">00:00</div>
     <div class="Status">
         <div>Now:
