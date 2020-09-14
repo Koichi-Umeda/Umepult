@@ -2799,3 +2799,34 @@ Processing by HomeController#show as HTML
 Completed 200 OK in 75ms (Views: 72.9ms | ActiveRecord: 0.1ms)
 
 
+Started GET "/main" for ::1 at 2020-09-14 19:48:58 +0900
+Processing by HomeController#main as HTML
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:7
+  Rendering home/main.html.erb within layouts/application
+  Rendered home/main.html.erb within layouts/application (2.7ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `Ateam' for nil:NilClass):
+    1: <% teamA= @match.Ateam %>
+    2: <% teamB= @match.Bteam %>
+    3: <div class="main posts-index">
+    4:     <div id= 'Gametime'>Gametime</div>
+  
+app/views/home/main.html.erb:1:in `_app_views_home_main_html_erb__673963146_122885300'
+Started GET "/" for ::1 at 2020-09-14 19:49:03 +0900
+Processing by HomeController#top as HTML
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 26ms (Views: 24.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-09-14 19:49:14 +0900
+Processing by HomeController#top as HTML
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 27ms (Views: 25.1ms | ActiveRecord: 0.0ms)
+
+
