@@ -20,9 +20,9 @@
     <div class="buttons">
         <button id="GamestartA">Gamestart <%= teamA%> (Q)</button>
         <button id="GamestartB">Gamestart <%= teamB%> (W)</button>
-        <button id="startA">start <%= teamA%> (A)</button>
-        <button id="startB">start <%= teamB%> (S)</button>
-        <button id="transition">transition (D)</button>
+        <button id="startA">Restart <%= teamA%> (A)</button>
+        <button id="startB">Restart <%= teamB%> (S)</button>
+        <button id="transition">Transition (D)</button>
         <button id="Playstop">Playstop (Z)</button>
         <button id="Gamestop">Gamestop (X)</button>
         <button id="reset">reset (C)</button>
@@ -39,14 +39,27 @@
     var gametimer = document.getElementById('Gametimer');
     var actualPlayingtimer = document.getElementById('ActualPlayingtimer')
     var timerA = document.getElementById('timerA');
-    var gamestartA = document.getElementById('GamestartA');
-    var startA = document.getElementById('startA');
-    var gamestartB = document.getElementById('GamestartB');
     var timerB = document.getElementById('timerB');
+    
+    //各ボタン
+    var gamestartA = document.getElementById('GamestartA');
+    var gamestartB = document.getElementById('GamestartB');
+    var startA = document.getElementById('startA');
     var startB = document.getElementById('startB');
     var Playstop = document.getElementById('Playstop');
     var Gamestop = document.getElementById('Gamestop');
     var reset = document.getElementById('reset');
+    var transition = document.getElementById('transition');
+
+    startA.style.display = "none";
+    startB.style.display = "none";
+    transition.style.display = "none";
+    Playstop.style.display = "none";
+    Gamestop.style.display = "none";
+    reset.style.display = "none";
+
+    
+    
     var PosessionA = document.getElementById('PosessionA');
     var PosessionB = document.getElementById('PosessionB');
     var situation = document.getElementById('Situation');
@@ -76,6 +89,7 @@
 
     //フラグ
     var isGamePlaying = 0;
+    var isPlaying = 0;
     var isAPossessing = 0;
     var isBPossessing = 0; 
 
@@ -216,7 +230,14 @@
             countUpGame();
             countUpA();
             countUpActualPlayingTime();
-            situation.textContent = 'Ateam possessing';
+            situation.textContent = 'A team possessing';
+            isPlaying = 1;
+
+            gamestartA.style.display = "none";
+            gamestartB.style.display = "none";
+            transition.style.display = "inline";
+            Playstop.style.display = "inline";
+            Gamestop.style.display = "inline";
         }
         
     });
@@ -231,7 +252,14 @@
             countUpGame();
             countUpB();
             countUpActualPlayingTime();
-            situation.textContent = 'Bteam possessing';
+            situation.textContent = 'B team possessing';
+            isPlaying = 1;
+
+            gamestartA.style.display = "none";
+            gamestartB.style.display = "none";
+            transition.style.display = "inline";
+            Playstop.style.display = "inline";
+            Gamestop.style.display = "inline";
         }
                     
     });
@@ -249,7 +277,14 @@
             //再帰的に使えるように関数を作る
             countUpA();
             countUpActualPlayingTime();
-            situation.textContent = 'Ateam possessing';
+            isPlaying = 1;
+            situation.textContent = 'A team possessing';
+
+            transition.style.display = "inline";
+            Playstop.style.display = "inline";
+            Gamestop.style.display = "inline";
+            startA.style.display = "none";
+            startB.style.display = "none";
         }
         
     });
@@ -267,7 +302,14 @@
             }
             countUpB();
             countUpActualPlayingTime();
-            situation.textContent = 'Bteam possessing';
+            isPlaying = 1;
+            situation.textContent = 'B team possessing';
+
+            transition.style.display = "inline";
+            Playstop.style.display = "inline";
+            Gamestop.style.display = "inline";
+            startA.style.display = "none";
+            startB.style.display = "none";
         }
         
     });
@@ -282,6 +324,14 @@
            isBPossessing = 0;
        }
        situation.textContent = 'Play stop';
+
+       isPlaying = 0;
+
+        startA.style.display = "inline";
+        startB.style.display = "inline";
+        Playstop.style.display = "none";
+        Gamestop.style.display = "inline";
+        transition.style.display = "none";
     });
     
     Gamestop.addEventListener('click',function(){
@@ -299,6 +349,19 @@
            isBPossessing = 0;
        }
        situation.textContent = 'Game stop';
+
+        isGamePlaying = 0;
+        isPlaying = 0;
+
+        gamestartA.style.display = "inline";
+        gamestartB.style.display = "inline";
+        reset.style.display = "inline";
+        startA.style.display = "none";
+        startB.style.display = "none";
+        Gamestop.style.display = "none";
+        Playstop.style.display = "none";
+        transition.style.display = "none";
+
     });
 
     //resetボタンにクリック時のイベントを追加(タイマーリセットイベント)
@@ -322,11 +385,19 @@
         isAPossessing = 0;
         isBPossessing = 0;
         isGamePlaying = 0;
+        isPlaying = 0;
         PosessionB.textContent = 0;
         situation.textContent = 'Game stop';
+
+        startA.style.display = "none";
+        startB.style.display = "none";
+        transition.style.display = "none";
+        Playstop.style.display = "none";
+        Gamestop.style.display = "none";
+        reset.style.display = "none";
     });
     transition.addEventListener('click',function(){
-        if (isGamePlaying == 1) {
+        if (isPlaying == 1) {
                 //Aが持っている時startB
                 if (isAPossessing == 1 && isBPossessing == 0) {
                     startBTime = Date.now();
@@ -339,7 +410,7 @@
                     }
                     countUpB();
                     countUpActualPlayingTime();
-                    situation.textContent = 'Bteam possessing';
+                    situation.textContent = 'B team possessing';
                 }else{
                     startATime = Date.now();
                     isAPossessing = 1;
@@ -352,8 +423,13 @@
                     //再帰的に使えるように関数を作る
                     countUpA();
                     countUpActualPlayingTime();
-                    situation.textContent = 'Ateam possessing';
+                    situation.textContent = 'A team possessing';
                 }
+                transition.style.display = "inline";
+                Playstop.style.display = "inline";
+                Gamestop.style.display = "inline";
+                startA.style.display = "none";
+                startB.style.display = "none";
             }
     });
 
@@ -373,7 +449,14 @@
                 //再帰的に使えるように関数を作る
                 countUpA();
                 countUpActualPlayingTime();
-                situation.textContent = 'Ateam possessing';
+                isPlaying = 1;
+                situation.textContent = 'A team possessing';
+
+                transition.style.display = "inline";
+                Playstop.style.display = "inline";
+                Gamestop.style.display = "inline";
+                startA.style.display = "none";
+                startB.style.display = "none";
             }
         //startB
         } else if (event.keyCode == 83) {
@@ -389,7 +472,14 @@
             }
             countUpB();
             countUpActualPlayingTime();
-            situation.textContent = 'Bteam possessing';
+            isPlaying = 1;
+            situation.textContent = 'B team possessing';
+
+            transition.style.display = "inline";
+            Playstop.style.display = "inline";
+            Gamestop.style.display = "inline";
+            startA.style.display = "none";
+            startB.style.display = "none";
             }
             
         }else if (event.keyCode ==90) {
@@ -405,6 +495,14 @@
                 isBPossessing = 0;
             }
             situation.textContent = 'Play stop';
+            isPlaying = 0;
+
+            startA.style.display = "inline";
+            startB.style.display = "inline";
+            Playstop.style.display = "none";
+            Gamestop.style.display = "inline";
+            transition.style.display = "none";
+
         } else if (event.keyCode ==81) {
             
             //Qキーが押された時GameStartA
@@ -414,12 +512,19 @@
                 startATime = Date.now();
                 isAPossessing = 1;
                 isGamePlaying = 1;
+                isPlaying = 1;
 
                 //再帰的に使えるように関数を作る
                 countUpGame();
                 countUpA();
                 countUpActualPlayingTime();
-                situation.textContent = 'Ateam possessing';
+                situation.textContent = 'A team possessing';
+                gamestartA.style.display = "none";
+                gamestartB.style.display = "none";
+                transition.style.display = "inline";
+                Playstop.style.display = "inline";
+                Gamestop.style.display = "inline";
+
             }
             
         }else if (event.keyCode ==87) {
@@ -431,12 +536,18 @@
                 startBTime = Date.now();
                 isBPossessing = 1;
                 isGamePlaying = 1;
+                isPlaying = 1;
 
                 //再帰的に使えるように関数を作る
                 countUpGame();
                 countUpB();
                 countUpActualPlayingTime();
-                situation.textContent = 'Bteam possessing';
+                situation.textContent = 'B team possessing';
+                gamestartA.style.display = "none";
+                gamestartB.style.display = "none";
+                transition.style.display = "inline";
+                Playstop.style.display = "inline";
+                Gamestop.style.display = "inline";
             }
             
         }else if(event.keyCode ==67){
@@ -458,8 +569,17 @@
             isAPossessing = 0;
             isBPossessing = 0;
             isGamePlaying = 0;
+            isPlaying = 0;
+
             PosessionB.textContent = 0;
             situation.textContent = 'Game stop';
+
+            startA.style.display = "none";
+            startB.style.display = "none";
+            transition.style.display = "none";
+            Playstop.style.display = "none";
+            Gamestop.style.display = "none";
+            reset.style.display = "none";
         }else if(event.keyCode ==88){
 
             //Xが押された時GameStop
@@ -475,9 +595,21 @@
                 isBPossessing = 0;
             }
             situation.textContent = 'Game stop';
+
+            gamestartA.style.display = "inline";
+            gamestartB.style.display = "inline";
+            startA.style.display = "none";
+            startB.style.display = "none";
+            Gamestop.style.display = "none";
+            Playstop.style.display = "none";
+            transition.style.display = "none";
+            reset.style.display = "inline";
+
+            isGamePlaying = 0;
+            isPlaying = 0;
         }else if (event.keyCode ==68) {
             //Dが押された時トランジション
-            if (isGamePlaying == 1) {
+            if (isPlaying == 1) {
                 //Aが持っている時startB
                 if (isAPossessing == 1 && isBPossessing == 0) {
                     startBTime = Date.now();
@@ -490,7 +622,7 @@
                     }
                     countUpB();
                     countUpActualPlayingTime();
-                    situation.textContent = 'Bteam possessing';
+                    situation.textContent = 'B team possessing';
                 }else{
                     startATime = Date.now();
                     isAPossessing = 1;
@@ -503,8 +635,13 @@
                     //再帰的に使えるように関数を作る
                     countUpA();
                     countUpActualPlayingTime();
-                    situation.textContent = 'Ateam possessing';
+                    situation.textContent = 'A team possessing';
                 }
+                transition.style.display = "inline";
+                Playstop.style.display = "inline";
+                Gamestop.style.display = "inline";
+                startA.style.display = "none";
+                startB.style.display = "none";
             }
         }
         
