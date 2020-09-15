@@ -5010,3 +5010,23 @@ Processing by HomeController#show as HTML
 Completed 200 OK in 26ms (Views: 23.4ms | ActiveRecord: 0.2ms)
 
 
+Started GET "/home/30" for ::1 at 2020-09-15 08:59:13 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"30"}
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 30], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 27ms (Views: 24.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/home/30" for ::1 at 2020-09-15 09:00:47 +0900
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"30"}
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = ? LIMIT ?[0m  [["id", 30], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:10
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 25ms (Views: 22.6ms | ActiveRecord: 0.2ms)
+
+
